@@ -1,0 +1,73 @@
+
+<div class="history-dialog__header">
+  <h1 mat-dialog-title>{{ data.orderId ?  'Edit order' : 'Create order' }}</h1>
+</div>
+<form [formGroup]="groupControl" (submit)="onSubmit()">
+  <div class="history-dialog__order-type_wrapper">
+    <mat-form-field appearance="fill" >
+      <mat-label>Select your order type</mat-label>
+      <select matNativeControl formControlName="orderType">
+        <option label="--select something--"></option>
+        <option value="BUY">Buy</option>
+        <option value="SELL">Sell</option>
+      </select>
+      <mat-error
+        *ngIf="groupControl.get('orderType').hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="history-dialog__price_wrapper">
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Entry price</mat-label>
+        <input type="number" matInput min="0" required="true" formControlName="entryPrice"
+        placeholder="10">
+        <mat-error *ngIf="groupControl.get('entryPrice').hasError('required')">
+          Entry price is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="groupControl.get('entryPrice').hasError('min')">
+          Entry price can't be less or equal 0
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Exit price</mat-label>
+        <input type="number" matInput min="0" required="true" formControlName="exitPrice"
+        placeholder="10">
+        <mat-error *ngIf="groupControl.get('exitPrice').hasError('required')">
+          Exit price can't be less or equal 0
+        </mat-error>
+        <mat-error *ngIf="groupControl.get('exitPrice').hasError('min')">
+          Exit price is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="history-dialog__date_wrapper">
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a entry date</mat-label>
+      <input matInput [matDatepicker]="entryPicker" required="true" formControlName="entryDate">
+      <mat-datepicker-toggle matSuffix [for]="entryPicker"></mat-datepicker-toggle>
+      <mat-datepicker #entryPicker></mat-datepicker>
+      <mat-error
+        *ngIf="groupControl.get('entryDate').hasError('required')">
+        This field is required
+     </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a exit date</mat-label>
+      <input matInput [matDatepicker]="exitPicker" formControlName="exitDate" [errorStateMatcher]="matcher">
+      <mat-datepicker-toggle matSuffix [for]="exitPicker"></mat-datepicker-toggle>
+      <mat-datepicker #exitPicker></mat-datepicker>
+      <mat-error *ngIf="groupControl.hasError('onlyEntryLessExitDate')">
+        <strong>Exit date</strong> must be bigger or equal than <strong>entry date</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="groupControl.get('exitDate').hasError('required')">
+        This field is required
+     </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="history-dialog__button_wrapper">
+      <button mat-raised-button color="danger"(click)="closeDialog()">Close</button>
+      <button type="submit" mat-raised-button color="primary">Save</button>
+  </div>
+</form>

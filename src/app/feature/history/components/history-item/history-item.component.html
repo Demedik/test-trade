@@ -1,0 +1,32 @@
+
+  <div class="col-2">
+    {{orderId}}
+  </div>
+  <div class="col-1">
+    {{ orderType }}
+  </div>
+  <div class="col-2">
+    {{ entryDate | date }}
+  </div>
+  <div class="col-2">
+    {{ exitDate | date }}
+  </div>
+  <div class="col-1">
+    {{ entryPrice }}
+  </div>
+  <div class="col-1">
+    {{ exitPrice }}
+  </div>
+  <div class="col-1">
+    {{ profit }}
+  </div>
+  <div class="col-1">
+    <button mat-button (click)="onEdit()">
+      <mat-icon aria-hidden="false" aria-label="Remove">edit</mat-icon>
+    </button>
+  </div>
+  <div class="col-1">
+    <button mat-button (click)="onRemove()">
+      <mat-icon aria-hidden="false" aria-label="Remove">delete_forever</mat-icon>
+    </button>
+  </div>

@@ -1,0 +1,29 @@
+:host {
+  .history-dialog__header {
+    box-shadow: 0 1px 0 #ececec;
+  }
+  .history-dialog__order-type_wrapper {
+    display: flex;
+    justify-content: center;
+
+    mat-form-field {
+      width: 250px;
+    }
+  }
+  .history-dialog__price_wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+  .history-dialog__date_wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+  .history-dialog__button_wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin: 0 5px;
+    }
+  }
+}

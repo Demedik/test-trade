@@ -1,0 +1,55 @@
+
+
+<div class="history-block__button_wrapper">
+  <button mat-button (click)="openDialog()">
+    Add order <mat-icon aria-hidden="false" aria-label="Remove">add</mat-icon>
+  </button>
+</div>
+<div class="history-block__table">
+    <div class="history-block__table-head">
+      <div class="col-2">
+        Order id
+      </div>
+      <div class="col-1">
+        Order type
+      </div>
+      <div class="col-2">
+        Entry date
+      </div>
+      <div class="col-2">
+        Exit date
+      </div>
+      <div class="col-1">
+        Entry price
+      </div>
+      <div class="col-1">
+        Exit price
+      </div>
+      <div class="col-1">
+        Profit
+      </div>
+      <div class="col-1">
+        <div class="history-block__table-head_button">
+          Edit
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="history-block__table-head_button">
+          Remove
+        </div>
+      </div>
+    </div>
+    <cdk-virtual-scroll-viewport itemSize="36" style="height: 250px;">
+        <app-history-item
+          *cdkVirtualFor="let item of items | reverse; let i = index"
+          [orderId]="item.orderId"
+          [orderType]="item.orderType"
+          [entryDate]="item.entryDate"
+          [exitDate]="item.exitDate"
+          [entryPrice]="item.entryPrice"
+          [exitPrice]="item.exitPrice"
+          [profit]="item.profit"
+          (edit)="openDialog($event)"
+        ></app-history-item>
+    </cdk-virtual-scroll-viewport>
+</div>
